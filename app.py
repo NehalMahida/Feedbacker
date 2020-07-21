@@ -8,7 +8,7 @@ def index():
         f_name = request.form['f_name']        
         sub_code = request.form['sub_code']
         sub_name = request.form['sub_name']
-        '''program_name = request.form['program_name']
+        program_name = request.form['program_name']
         dept_name = request.form['dept_name']
         sem_name = request.form['sem_name']
         aca_year = request.form['aca_year']
@@ -23,7 +23,7 @@ def index():
         print(sem_name)
         print(aca_year)
         print(no_feed)
-        print(no_student)'''
+        print(no_student)
         print(sub_code)
         print(sub_name)
         print(f_name)
