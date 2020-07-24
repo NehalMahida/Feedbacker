@@ -1,4 +1,7 @@
 from flask import Flask, render_template, request, redirect
+import os
+from werkzeug.utils import secure_filename
+from pdfRead import extractTable
 
 app = Flask(__name__)
 
@@ -14,7 +17,7 @@ def index():
         aca_year = request.form['aca_year']
         no_student = request.form['no_student']
         no_feed = request.form['no_feed']
-        #up_pdf = request.form['up_pdf']
+        up_pdf = request.files['up_pdf']
         print(f_name)
         print(sub_code)
         print(sub_name)
@@ -23,10 +26,11 @@ def index():
         print(sem_name)
         print(aca_year)
         print(no_feed)
-        print(no_student)
-        print(sub_code)
-        print(sub_name)
-        print(f_name)
+        print(no_student)      
+        #print(up_pdf) 
+        filename = secure_filename(up_pdf.filename)
+        up_pdf.save(os.path.join('uploads', filename))
+        extractTable('uploads/'+filename)
         return redirect('/')
     else:
         return render_template('index.html')
