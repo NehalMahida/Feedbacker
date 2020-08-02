@@ -5,7 +5,8 @@ import re
 
 
 
-def extractTable(filepath):    
+def extractTable(f_path, filename):    
+    filepath = f_path + filename
     # convert the pdf into comma separted file (CSV) using tabula's method.
     convert_into(filepath, "createFiles/data.csv", output_format="csv", pages = "all")
 
@@ -37,4 +38,4 @@ def extractTable(filepath):
     df5 = df4_out.to_frame().T
 
 
-    df5.to_csv('createFiles/TRP.csv', index= False, header = False)
+    df5.to_csv('createFiles/'+filename+'.csv', index= False, header = False)

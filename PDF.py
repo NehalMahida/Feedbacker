@@ -37,3 +37,12 @@ class PDF:
 
     def getSem(self):
         return self.semester
+    
+    def getAcayear(self):
+        return self.aca_year
+
+    def getTotalFeed(self):
+        return self.totalFeedback
+    
+    def getTotalStu(self):
+        return self.totalStudent

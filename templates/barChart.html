@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        .ct-series-a .ct-bar,
+        .ct-series-a .ct-line,
+        .ct-series-a .ct-point,
+        .ct-series-a .ct-slice-donut {
+            stroke: red;
+            /* The width of your bars */
+            stroke-width: 20px;
+            stroke-opacity: initial;
+            text-decoration: black;
+        }
+
+        .ct-label {
+            font-size: 10px;
+            color: black;
+        }
+
+        .ct-series-b .ct-bar,
+        .ct-series-b .ct-line,
+        .ct-series-b .ct-point,
+        .ct-series-b .ct-slice-donut {
+            stroke: blue;
+            /* The width of your bars */
+            stroke-width: 20px;
+            text-decoration: black;
+        }
+
+        .ct-chart {
+            margin: auto;
+            width: 300px;
+            height: 500px;
+        }
+    </style>
+
+    <title>Bar Chart</title>
+</head>
+
+<body>
+    <h3 style="text-align: center;">Best Teacher for the subject code : CE341</h3>
+    <div class="ct-chart ct-perfect-fourth" align="center"></div>
+    <script>
+        var dt = $.get('/barchart');
+        dt.done(function (results) {
+            var data = {
+                labels: results.FacultyName,
+                series: [
+                    results.Excellent,
+                    results.Good,
+                    results.Average,
+                    results.Bad,
+                    results.VeryBad
+                ]
+            };
+
+            var options = {
+                seriesBarDistance: 10,
+                width: 500,
+                height: 400,
+                scaleMinSpace: 20,
+                onlyInteger: true,
+                referenceValue: 5,
+                legend: {
+                    display: true,
+                    labels: {
+                        fontColor: 'rgb(255, 99, 132)'
+                    }
+                }
+            };
+
+            var responsiveOptions = [
+                ['screen and (min-width: 641px) and (max-width: 1024px)', {
+                    seriesBarDistance: 10,
+                    axisX: {
+                        labelInterpolationFnc: function (value) {
+                            return Math.floor(value[0]);
+                        }
+                    }
+                }]
+            ];
+
+            var myChart = new Chartist.Bar('.ct-chart', data, options, responsiveOptions);
+
+        });
+
+
+    </script>
+</body>
+
+</html>
