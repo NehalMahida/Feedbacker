@@ -37,5 +37,5 @@ def extractTable(f_path, filename):
     df4_out.index = df4_out.index.map('{0[1]}_{0[0]}'.format)
     df5 = df4_out.to_frame().T
 
-
-    df5.to_csv('createFiles/'+filename+'.csv', index= False, header = False)
+    return df5
+    #df5.to_csv('createFiles/'+filename+'.csv', index= False, header = False)

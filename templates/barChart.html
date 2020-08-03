@@ -63,6 +63,7 @@
     <script>
         var dt = $.get('/barchart');
         dt.done(function (results) {
+            console.log("In pie");
             var data = {
                 labels: results.FacultyName,
                 series: [

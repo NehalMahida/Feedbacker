@@ -1,0 +1,97 @@
+{% extends "layout.html" %}
+{% block content %}    
+    <div class="bg-primary">
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-7">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-3">Add New Entry</h3></div>
+                                    <div class="card-body">
+                                        <form enctype="multipart/form-data" method="POST" action="/toRegister" >
+                                          <div class="form-group">
+                                            <label for="inputFacultyName">Faculty Name</label>
+                                            <input type="text" class="form-control" name="inputFacultyName" placeholder="Nehal Mahida">
+                                          </div>
+                                          <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                              <label for="inputSubjectId">Subject Id</label>
+                                              <input type="text" class="form-control" name="inputSubjectId" placeholder="CE341">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                              <label for="inputSubjectName">Subject Name</label>
+                                              <input type="text" class="form-control" name="inputSubjectName" placeholder="Java">
+                                            </div>
+                                          </div>
+                                          <div class="form-row">
+                                            <div class="form-group col-md-3">
+                                                <label for="inputSemester">Semester</label>
+                                            <select class="form-control" name="inputSemester">
+                                              <option>1</option>
+                                              <option>2</option>
+                                              <option>3</option>
+                                              <option>4</option>
+                                              <option>5</option>
+                                              <option>6</option>
+                                              <option>7</option>                      
+                                              <option>8</option>
+                                            </select>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label for="inputDepartment">Department</label>
+                                            <select class="form-control" name="inputDepartment">
+                                              <option>CE</option>
+                                              <option>IT</option>
+                                              <option>CSE</option>
+                                            </select>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label for="inputInstitute">Institute</label>
+                                            <select class="form-control" name="inputInstitute">
+                                              <option>CSPIT</option>
+                                              <option>DEPSTAR</option>
+                                            </select>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label for="inputProgram">Program</label>
+                                            <select class="form-control" name="inputProgram">
+                                              <option>Btech</option>
+                                              <option>Mtech</option>
+                                            </select>
+                                            </div>
+                                          </div>
+                                          <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                              <label for="inputAcademicYear">Academic Year</label>
+                                              <input type="number" name="inputAcademicYear" class="form-control" id = "inputAcademicYear" placeholder="2020">
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                              <label for="inputState">Total Students</label>
+                                              <input type="number" class="form-control" name = "inputTotalStudents" placeholder="120">
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                              <label for="inputState">Total Feedback</label>
+                                              <input type="number" class="form-control" name = "inputTotalFeedback" placeholder="120">
+                                            </div>
+                                          </div>
+                                          <div class="form-group">
+                                            <label for="exampleFormControlFile1">Example file input</label>
+                                            <input type="file" class="form-control-file" name="pdfUpload" >
+                                          </div>
+                                          <button type="submit" class="btn btn-primary">Submit</button>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer text-center">
+                                        <div class="small"><a href="/">Feedbacker.com</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>            
+        </div>       
+    </div>
+{% endblock content %}

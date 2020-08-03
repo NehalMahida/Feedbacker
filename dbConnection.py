@@ -1,9 +1,14 @@
-import csv
+from flask import Flask
+from flaskext.mysql import MySQL
 
-values = (1, 2)
-with open('createFiles/TRP.csv') as f:
-        data=[tuple(line) for line in csv.reader(f)]
-        data = data[0]
-    
-values = values + data
-print(values)
+def connection():
+        app = Flask(__name__)
+        mysql = MySQL()
+        app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+        app.config['MYSQL_DATABASE_USER'] = 'root'
+        app.config['MYSQL_DATABASE_PASSWORD'] = ''
+        app.config['MYSQL_DATABASE_DB'] = 'facultyfeedback'
+        mysql.init_app(app)
+        db = mysql.connect()
+        cursor = db.cursor()
+        return db, cursor
