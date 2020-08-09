@@ -147,9 +147,11 @@
             $.getJSON(
                 '/getBarChart' + '/' + data,
                 function (data) {
-                    console.log(data);
+                    //console.log(data);                    
                     var ctx = document.getElementById("myBarChart");
-                    var myLineChart = new Chart(ctx, {
+                    if(window.myLineChart != undefined)
+                            window.myLineChart.destroy();                       
+                        window.myLineChart = new Chart(ctx, {
                         type: 'bar',
                         data: {
                             labels: data.FacultyName,
@@ -231,15 +233,18 @@
             var sub  = $('#inputSubject').val(); 
             var data = [sem, department, sub];   
             data = JSON.stringify(data);
-            console.log("selected");
+            //console.log("selected");
             $.getJSON(
                 '/getPieChart'+ '/' + data,
                 function (data){                       
                     var ctx = document.getElementById("myPieChart");
-                    if(ctx){
-                        console.log("in Pie");
-                        console.log(data)
-                        var myPieChart = new Chart(ctx, {
+                    if(ctx){                        
+                       // console.log("in Pie");
+                       // console.log(data);
+                       // console.log(this.chart);
+                        if(window.myPieCharts != undefined)
+                            window.myPieCharts.destroy();
+                        window.myPieCharts = new Chart(ctx, {
                             type: 'pie',
                             data: {
                                 labels: data.FacultyName,   
@@ -248,10 +253,11 @@
                                 backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745'],
                                 }],
                             },
-                            });      
+                            });
+                       // myPieChart.destroy();      
                     }
                     else{
-                        document.write("Element myPieChart not found!");
+                        document.write("Element myPieChart not found!");                       
                     }
                 }
             );

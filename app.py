@@ -26,7 +26,7 @@ def getPieChart(data):
 
 @app.route('/getBarChart/<data>')
 def getBarChart(data):
-    print('bar chart')
+    #print('bar chart')
     return showBarChart(data)
 
 
