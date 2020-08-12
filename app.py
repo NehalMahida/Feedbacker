@@ -4,6 +4,7 @@ from flask import jsonify
 
 from registerEntry import addEntry
 from reportGenerate import showBarChart, showPieChart, getSubjectNames, getFacultyNames
+from individualReport import getSubjectNames_indi, showBarChart_indi
 
 import json
 import os
@@ -52,6 +53,22 @@ def get_subject(data):
 @app.route('/get_faculty/<data>')
 def get_faculty(data):    
     return getFacultyNames(data)
+
+# for individual report module.
+
+@app.route('/individualReport')
+def individualReport():
+    return render_template('individualReport.html')
+
+@app.route('/get_subject_indi/<data>')
+def get_subject_indi(data):
+    #return jsonify([])
+    return getSubjectNames_indi(data)
+
+@app.route('/getBarChart_indi/<data>')
+def getBarChart_indi(data):
+    #print(data)
+    return showBarChart_indi(data)
 
 if __name__ == '__main__':
     app.run(debug=True)

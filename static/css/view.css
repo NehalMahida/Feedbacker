@@ -10261,3 +10261,10 @@ body {
 .sb-sidenav-light .sb-sidenav-footer {
   background-color: #e9ecef;
 }
+
+
+/* Style by Nehal */
+.collapse.navbar-collapse {
+  align-items: flex-end;
+  flex-direction: column-reverse;
+}

@@ -1,7 +1,17 @@
 {% extends "layout.html" %}
 {% block content %}
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-    <a style="align-items: flex-start;" class="navbar-brand" href="/toRegister">Add New Entry</a>
+    <a class="navbar-brand" href="/">Feedback Visualizer</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a style="align-items: flex-start;" class="nav-link" href="/toRegister">Upload</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/individualReport">Individual</a>
+            </li>
+        </ul>
+    </div>
 </nav>
 <div id="layoutSidenav">
     <div id="layoutSidenav_content">
@@ -61,7 +71,7 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-chart-bar mr-1"></i>
-                                Characteristic Of Feedback
+                                Feedback Based On Criteria
                             </div>
                             <div class="card-body"><canvas id="myBarChart" width="100%" height="50"></canvas></div>
                         </div>
@@ -75,13 +85,13 @@
                             <div class="card-body"><canvas id="myPieChart" width="100%" height="50"></canvas></div>
                         </div>
                     </div>
-                </div>                
+                </div>
             </div>
         </main>
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid">
                 <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text-muted">Copyright &copy; Feebacker 2020</div>                    
+                    <!--div class="text-muted">Copyright &copy; Feeback Visualizer </div-->
                 </div>
             </div>
         </footer>
@@ -149,49 +159,49 @@
                 function (data) {
                     //console.log(data);                    
                     var ctx = document.getElementById("myBarChart");
-                    if(window.myLineChart != undefined)
-                            window.myLineChart.destroy();                       
-                        window.myLineChart = new Chart(ctx, {
+                    if (window.myLineChart != undefined)
+                        window.myLineChart.destroy();
+                    window.myLineChart = new Chart(ctx, {
                         type: 'bar',
                         data: {
                             labels: data.FacultyName,
                             datasets: [
-                            {
-                                label: "Excellent",
-                                backgroundColor: "green",
-                                borderColor: "black",
-                                borderWidth: 1,
-                                data: data.Excellent
-                            },
-                            {
-                                label: "Good",
-                                backgroundColor: "blue",
-                                borderColor: "black",
-                                borderWidth: 1,
-                                data: data.Good
-                            },
-                            {
-                                label: "Average",
-                                backgroundColor: "purple",
-                                borderColor: "black",
-                                borderWidth: 1,
-                                data: data.Average
-                            },
-                            {
-                                label: "Bad",
-                                backgroundColor: "yellow",
-                                borderColor: "black",
-                                borderWidth: 1,
-                                data: data.Bad
-                            },
-                            {
-                                label: "VeryBad",
-                                backgroundColor: "red",
-                                borderColor: "black",
-                                borderWidth: 1,
-                                data: data.VeryBad
-                            }
-                        ]
+                                {
+                                    label: "Excellent",
+                                    backgroundColor: "green",
+                                    borderColor: "black",
+                                    borderWidth: 1,
+                                    data: data.Excellent
+                                },
+                                {
+                                    label: "Good",
+                                    backgroundColor: "blue",
+                                    borderColor: "black",
+                                    borderWidth: 1,
+                                    data: data.Good
+                                },
+                                {
+                                    label: "Average",
+                                    backgroundColor: "purple",
+                                    borderColor: "black",
+                                    borderWidth: 1,
+                                    data: data.Average
+                                },
+                                {
+                                    label: "Bad",
+                                    backgroundColor: "yellow",
+                                    borderColor: "black",
+                                    borderWidth: 1,
+                                    data: data.Bad
+                                },
+                                {
+                                    label: "VeryBad",
+                                    backgroundColor: "red",
+                                    borderColor: "black",
+                                    borderWidth: 1,
+                                    data: data.VeryBad
+                                }
+                            ]
                         },
                         options: {
                             scales: {
@@ -209,7 +219,7 @@
                                 yAxes: [{
                                     ticks: {
                                         min: 0,
-                                        max: 600,
+                                        max: 200,
                                         maxTicksLimit: 5
                                     },
                                     gridLines: {
@@ -229,41 +239,41 @@
 
         $('#Select').click(function () {
             var department = $('#inputDepartment').val();
-            var sem  = $('#inputSemester').val();    
-            var sub  = $('#inputSubject').val(); 
-            var data = [sem, department, sub];   
+            var sem = $('#inputSemester').val();
+            var sub = $('#inputSubject').val();
+            var data = [sem, department, sub];
             data = JSON.stringify(data);
             //console.log("selected");
             $.getJSON(
-                '/getPieChart'+ '/' + data,
-                function (data){                       
+                '/getPieChart' + '/' + data,
+                function (data) {
                     var ctx = document.getElementById("myPieChart");
-                    if(ctx){                        
-                       // console.log("in Pie");
-                       // console.log(data);
-                       // console.log(this.chart);
-                        if(window.myPieCharts != undefined)
+                    if (ctx) {
+                        // console.log("in Pie");
+                        // console.log(data);
+                        // console.log(this.chart);
+                        if (window.myPieCharts != undefined)
                             window.myPieCharts.destroy();
                         window.myPieCharts = new Chart(ctx, {
                             type: 'pie',
                             data: {
-                                labels: data.FacultyName,   
+                                labels: data.FacultyName,
                                 datasets: [{
-                                data: data['Overall Feedback (%)'],
-                                backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745'],
+                                    data: data['Overall Feedback (%)'],
+                                    backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745'],
                                 }],
                             },
-                            });
-                       // myPieChart.destroy();      
+                        });
+                        // myPieChart.destroy();      
                     }
-                    else{
-                        document.write("Element myPieChart not found!");                       
+                    else {
+                        document.write("Element myPieChart not found!");
                     }
                 }
             );
 
-               
-            });
+
+        });
 
 
 
