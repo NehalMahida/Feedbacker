@@ -9241,7 +9241,7 @@ button.bg-dark:focus {
     margin-left: auto !important;
   }
 }
-@media (min-width: 1200px) {
+/*@media (min-width: 1200px) {
   .m-xl-0 {
     margin: 0 !important;
   }
@@ -9673,7 +9673,7 @@ button.bg-dark:focus {
 .mx-xl-auto {
     margin-left: auto !important;
   }
-}
+}*/
 .stretched-link::after {
   position: absolute;
   top: 0;
